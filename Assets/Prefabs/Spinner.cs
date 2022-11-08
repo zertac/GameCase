@@ -88,6 +88,9 @@ public class Spinner : MonoBehaviour
 
     IEnumerator Rotate()
     {
+        // hide spin button
+        SpinButton.gameObject.SetActive(false);
+
         // get euler angle for pie object
         Vector3 startRotation = Container.eulerAngles;
 
@@ -116,7 +119,6 @@ public class Spinner : MonoBehaviour
         // call end function when spinner is stop
         if (Ended != null)
         {
-            SpinButton.gameObject.SetActive(false);
             Ended(_data.Rewards[_data.Reward]);
         }
     }
