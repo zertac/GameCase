@@ -5,7 +5,9 @@ using UnityEngine;
 public class Spinner : MonoBehaviour
 {
     public static Spinner Instance { get; private set; }
-
+    public Transform Container;
+    public float AnimationDuration = 5f;
+    public float EaseMultiplier = 0.2f;
     private List<Pie> _data;
 
     void Awake()
@@ -25,6 +27,13 @@ public class Spinner : MonoBehaviour
 
     }
 
+    void OnGUI()
+    {
+        if (GUILayout.Button("SPIN"))
+        {
+            Spin();
+        }
+    }
     public void SetData(List<Pie> data)
     {
         _data = data;
@@ -33,8 +42,38 @@ public class Spinner : MonoBehaviour
 
         for (int i = 0; i < _data.Count; i++)
         {
-            var obj = Instantiate(pieRefObj, GameObject.Find("Canvas").transform);
+            var obj = Instantiate(pieRefObj, Container.transform);
             obj.GetComponent<PieObject>().SetData(_data[i], _data.Count, i);
         }
+    }
+
+    public void Spin()
+    {
+        StartCoroutine(Rotate());
+    }
+
+    IEnumerator Rotate()
+    {
+        Vector3 startRotation = Container.eulerAngles;
+        float endRotation = startRotation.z + 810.0f;
+        float t = 0.0f;
+
+        while (t < AnimationDuration)
+        {
+            t += Time.deltaTime;
+
+            float zRotation = EaseOutBack(startRotation.z, endRotation, t / AnimationDuration);
+            Container.eulerAngles = new Vector3(startRotation.x, startRotation.y, zRotation);
+
+
+            yield return null;
+        }
+    }
+
+    public float EaseOutBack(float s, float e, float v)
+    {
+        e -= s;
+        v = (v) - 1;
+        return e * ((v) * v * ((EaseMultiplier + 1) * v + EaseMultiplier) + 1) + s;
     }
 }

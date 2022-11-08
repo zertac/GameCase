@@ -19,9 +19,9 @@ public class GameHelper : MonoBehaviour
     public void CreateSpinner()
     {
         var list = new List<Pie>();
-        string[] colors = {"#CD3712", "#FFEA4D", "#2447CD", "#1FC352", "#BB33FF", "#F3764B", "#F376BE" };
+        string[] colors = {"#CD3712", "#FFEA4D", "#2447CD", "#1FC352", "#BB33FF", "#F3764B", "#F376BE", "#FFEA4D", "#BB33FF", "#F3764B", "#F376BE", "#FFEA4D", "#BB33FF", "#F3764B", "#F376BE", "#FFEA4D", };
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 14; i++)
         {
             var pie = new Pie();
             pie.Title = "title " + i;

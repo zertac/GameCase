@@ -11,6 +11,7 @@ public class PieObject : MonoBehaviour
     public Image PieImage;
     public RectTransform PieRectTransform;
     public TextMeshProUGUI Text;
+    public RectTransform ContentContainer;
 
     private Pie _data { get; set; }
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class PieObject : MonoBehaviour
     {
         var fillAmount = (360f / count) / 360f;
         var angle = (360f / count) * (index + 1);
+        var textAngle = (360f / count) / 2;
 
         _data = data;
         Text.text = _data.Title;
@@ -49,5 +51,6 @@ public class PieObject : MonoBehaviour
         }
 
         PieRectTransform.Rotate(Vector3.back, angle);
+        ContentContainer.Rotate(Vector3.back, textAngle);
     }
 }
