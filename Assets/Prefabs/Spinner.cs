@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Spinner : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Spinner : MonoBehaviour
 
     // This variable declare for easing animation. You can change on inspector
     public float EaseMultiplier = 0.2f;
+
+    // Max randomized rotate count for animation
+    public float MaxRotateCount = 5f;
 
     // Spinner start action for handle when spinner starts to rotate
     public Action Started;
@@ -98,7 +102,7 @@ public class Spinner : MonoBehaviour
         float pieAngle = (360f / _data.Rewards.Count);
 
         // calculate target angle for find end rotation
-        float targetAngle = (pieAngle * (_data.Reward + 1)) + (pieAngle / 2);
+        float targetAngle = (360f * Convert.ToInt32(Random.Range(1f, MaxRotateCount))) + (pieAngle * (_data.Reward + 1)) + (pieAngle / 2);
 
         // calculate end rotation
         float endRotation = startRotation.z + targetAngle;
