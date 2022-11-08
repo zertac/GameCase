@@ -1,12 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHelper : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Current activated spinner object
+    public Spinner Spinner;
+
+    // Total reward score text for show to user 
+    public TextMeshProUGUI TotalRewardText;
+
+    // Retry button object
+    public Button RetryButton;
+
+    #region TOTAL REWARD VARIABLE
+    private int _totalReward;
+
+    public int TotalReward
+    {
+        get { return _totalReward; }
+        set
+        {
+            _totalReward = value;
+            TotalRewardText.text = "Total Reward :\n" + value.ToString();
+        }
+    }
+    #endregion
+
     void Start()
     {
+        // Create spinner prefab for play
         CreateSpinner();
     }
 
@@ -18,19 +44,37 @@ public class GameHelper : MonoBehaviour
 
     public void CreateSpinner()
     {
-        var list = new List<Pie>();
-        string[] colors = {"#CD3712", "#FFEA4D", "#2447CD", "#1FC352", "#BB33FF", "#F3764B", "#F376BE", "#FFEA4D", "#BB33FF", "#F3764B", "#F376BE", "#FFEA4D", "#BB33FF", "#F3764B", "#F376BE", "#FFEA4D", };
+        // Get dummy daily reward data from fake server
+        var spinnerData = DataHelper.GetSpinner();
 
-        for (int i = 0; i < 14; i++)
+        // If spinner object created then destroy game object before create new one 
+        if (Spinner.Instance != null)
         {
-            var pie = new Pie();
-            pie.Title = "title " + i;
-            pie.Value = i;
-            pie.Color = colors[i];
-
-            list.Add(pie);
+            Destroy(Spinner.Instance.gameObject);
         }
 
-        Spinner.Instance.SetData(list);
+        //Hide retry button
+        RetryButton.gameObject.SetActive(false);
+
+        // initialize spinner prefab and set retrived data from server
+        var spinnerObj = Instantiate(Spinner, GameObject.Find("Canvas").transform);
+        Spinner.Instance.SetData(spinnerData);
+
+        // set actions of spinner prefabs
+        Spinner.Instance.Started += () =>
+        {
+            Debug.Log("Spinner sterted to spin");
+        };
+
+        Spinner.Instance.Ended += (reward) =>
+        {
+            Debug.Log("Spinner ended");
+
+            // Set total earned reward ui
+            TotalReward += reward.Value;
+
+            // Activate Retry button for play again
+            RetryButton.gameObject.SetActive(true);
+        };
     }
 }

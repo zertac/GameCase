@@ -1,0 +1,40 @@
+{
+    "Reward": 5,
+    "Rewards": [
+      {
+        "Title": "100 Coins",
+        "Value": 100,
+        "Color": "#CD3712"
+      },
+      {
+        "Title": "Pass",
+        "Value": 0,
+        "Color": "#FFEA4D"
+      },
+      {
+        "Title": "250 Coins",
+        "Value": 250,
+        "Color": "#2447CD"
+      },
+      {
+        "Title": "500 Coins",
+        "Value": 500,
+        "Color": "#1FC352"
+      },
+      {
+        "Title": "1000 Coins",
+        "Value": 1000,
+        "Color": "#BB33FF"
+      },
+      {
+        "Title": "1500 Coins",
+        "Value": 1500,
+        "Color": "#CD3712"
+      },
+      {
+        "Title": "2500 Coins",
+        "Value": 2500,
+        "Color": "#FFEA4D"
+      }
+    ]
+}

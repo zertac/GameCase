@@ -2,9 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pie
+/// <summary>
+/// SpinnerWhell data is for daily reward
+/// </summary>
+[System.Serializable]
+public class SpinnerWheel
 {
-    public string Title { get; set; }
-    public int Value { get; set; }
-    public string Color { get; set; }
+    [SerializeField]
+    public int Reward;
+
+    [SerializeField]
+    public List<Reward> Rewards;
+}
+
+/// <summary>
+/// Representing spinner pies
+/// </summary>
+[System.Serializable]
+public class Reward
+{
+    [SerializeField]
+    public string Title;
+    [SerializeField]
+    public int Value;
+    [SerializeField]
+    public string Color;
 }

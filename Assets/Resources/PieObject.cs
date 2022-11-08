@@ -13,7 +13,7 @@ public class PieObject : MonoBehaviour
     public TextMeshProUGUI Text;
     public RectTransform ContentContainer;
 
-    private Pie _data { get; set; }
+    private Reward _data { get; set; }
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,7 +32,7 @@ public class PieObject : MonoBehaviour
 
     }
 
-    public void SetData(Pie data, int count, int index)
+    public void SetData(Reward data, int count, int index)
     {
         var fillAmount = (360f / count) / 360f;
         var angle = (360f / count) * (index + 1);
