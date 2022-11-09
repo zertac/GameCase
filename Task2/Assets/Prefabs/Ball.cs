@@ -24,7 +24,10 @@ public class Ball : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _rb.velocity = Vector2.one * BallSpeed;
+        var directionX = Random.Range(0, 2) == 0 ? 1 : -1;
+        var directionY = Random.Range(0, 2) == 0 ? 1 : -1;
+
+        _rb.velocity = new Vector2(directionX * BallSpeed, directionY * BallSpeed);
         IsPlaying = true;
     }
 
