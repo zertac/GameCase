@@ -8,6 +8,8 @@ public class BrickObject : MonoBehaviour
     private SpriteRenderer SpriteRenderer;
     private BrickData _data;
 
+    public GameObject ExplodeObj;
+
     void Awake()
     {
         SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -64,6 +66,9 @@ public class BrickObject : MonoBehaviour
             if (collision.gameObject.GetComponent<Ball>().Data.Type == _data.Type)
             {
                 EventManager.Instance.Fire<Score>(ActionTypes.BREAK_BRICK, new Score { Value = _data.Value });
+
+                Explode();
+
                 Destroy(gameObject);
             }
             else
@@ -71,5 +76,19 @@ public class BrickObject : MonoBehaviour
                 collision.gameObject.GetComponent<Ball>().SetColor(_data.Type);
             }
         }
+    }
+
+    void Explode()
+    {
+        var o = Instantiate(ExplodeObj);
+
+        var ps = o.GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule psmain = ps.main;
+        psmain.startColor = _data.Color.ToColor();
+
+        var pos = gameObject.transform.position;
+        var scale = gameObject.GetComponent<SpriteRenderer>().bounds.size;
+
+        o.transform.position = new Vector2(pos.x + (scale.x / 2), pos.y - (scale.y / 2));
     }
 }

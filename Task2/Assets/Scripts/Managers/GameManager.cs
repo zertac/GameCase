@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         var brickCount = GameObject.FindGameObjectsWithTag("Brick").Count();
 
-        if (brickCount > 0)
+        if (brickCount == 0)
         {
             EventManager.Instance.Fire<Score>(ActionTypes.LEVEL_COMPLETE, new Score { Value = TotalScore });
         }
