@@ -1,0 +1,32 @@
+{
+  "Levels": [
+    {
+      "Col": 9,
+      "Row": 7,
+
+      "Colors": {
+        "A": "#00aeef",
+        "B": "#2e3192",
+        "F": "#ec008c",
+        "G": "#00a651",
+        "L": "#8dc63f",
+        "O": "#f26522",
+        "P": "#92278f",
+        "R": "#ed1c24",
+        "Y": "#fff200"
+      },
+      "Values": {
+        "A": 10,
+        "B": 20,
+        "F": 5,
+        "G": 4,
+        "L": 15,
+        "O": 12,
+        "P": 6,
+        "R": 3,
+        "Y": 1
+      },
+      "Data": "BGOAGLGAAPFBGAGAYAOBRAOBPYOGPRYBOLRRPBBPYOALRYOOPBAGYOOROYALRLR"
+    }
+  ]
+}
