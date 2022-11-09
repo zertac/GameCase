@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Xml.Linq;
 
 public static class Extensions
 {
-    public static string ToColor(this Dictionary<string, string> o, string v)
+    public static Color ToColor(this string hex)
     {
-        return o.FirstOrDefault(x => x.Key == v).Value;
-    }
+        Color color = new Color(0, 0, 0);
 
-    public static string ToValue(this Dictionary<string, string> o, string v)
-    {
-        return o.FirstOrDefault(x => x.Key == v).Value;
+        if (ColorUtility.TryParseHtmlString(hex, out color))
+        {
+            return color;
+        }
+
+        return color;
     }
 }

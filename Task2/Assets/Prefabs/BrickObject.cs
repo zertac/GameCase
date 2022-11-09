@@ -35,11 +35,7 @@ public class BrickObject : MonoBehaviour
 
         SetScale();
 
-        Color color;
-        if (ColorUtility.TryParseHtmlString(_data.Color, out color))
-        {
-            SpriteRenderer.color = color;
-        }
+        SpriteRenderer.color = _data.Color.ToColor();
     }
 
     public float GetScreenToWorldWidth

@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
 {
     public BallData Data;
     public SpriteRenderer SpriteRenderer;
-
+    public float BallSpeed = 4f;
     private Rigidbody2D _rb;
 
     void Awake()
@@ -22,7 +22,7 @@ public class Ball : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _rb.velocity = new Vector2(2f, 2f);
+        _rb.velocity = Vector2.one * BallSpeed;
     }
 
     // Update is called once per frame
@@ -50,11 +50,7 @@ public class Ball : MonoBehaviour
 
         Data.Type = colorData.Key;
 
-        Color color;
-        if (ColorUtility.TryParseHtmlString(colorData.Value, out color))
-        {
-            SpriteRenderer.color = color;
-        }
+        SpriteRenderer.color = colorData.Value.ToColor();
     }
 
     public void SetColor(string type)
@@ -63,10 +59,6 @@ public class Ball : MonoBehaviour
 
         Data.Type = type;
 
-        Color color;
-        if (ColorUtility.TryParseHtmlString(colorData, out color))
-        {
-            SpriteRenderer.color = color;
-        }
+        SpriteRenderer.color = colorData.ToColor();
     }      
 }
