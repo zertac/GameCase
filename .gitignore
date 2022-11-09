@@ -10,6 +10,14 @@
 /Task1/[Ll]ogs/
 /Task1/[Mm]emoryCaptures/
 
+/Task2/[Ll]ibrary/
+/Task2/[Tt]emp/
+/Task2/[Oo]bj/
+/Task2/[Bb]uild/
+/Task2/[Bb]uilds/
+/Task2/[Ll]ogs/
+/Task2/[Mm]emoryCaptures/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
