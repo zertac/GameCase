@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class LobbyScreen : ScreenBase
 {
+    // Player highest score ui object
     public TextMeshProUGUI HighestScoreText;
+    // Player last score ui object
     public TextMeshProUGUI LastScoreText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +22,13 @@ public class LobbyScreen : ScreenBase
 
     }
 
+    // When click to play now button
     public void PlayNow()
     {
         GameManager.Instance.StartGame();
     }
 
+    // Set default ui content
     public void SetDefaults()
     {
         HighestScoreText.text = "Higest Score : " + PlayerManager.Instance.Data.HighestScore.ToString();

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 public static class DataHelper
 {
+    // get dummy game levels data.
     public static GameData GetGameData()
     {
         var str = Resources.Load<TextAsset>("data");

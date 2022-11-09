@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // player move speed
     public float MoveSpeed = 1f;
+    // player move multipler on mobile devices
     public float MobileTouchSensitivty = 0.1f;
-
+    // current direction of player
     public Direction PlayerDirection;
+    // player sprite renderer
     public SpriteRenderer SpriteRenderer;
-
+    // camera ortographic width
     private float OrthoWidth;
+    // last x position of player
     private float lastX = 0f;
-
+    // player direction types
     public enum Direction
     {
         Idle,
@@ -20,16 +24,20 @@ public class Player : MonoBehaviour
         Right
     }
 
-    // Start is called before the first frame update
+    // set defaults on start
     void Start()
     {
+        // get sprite renderer
         SpriteRenderer = GetComponent<SpriteRenderer>();
 
+        // calculate ortographic width
         OrthoWidth = Camera.main.orthographicSize * Camera.main.aspect;
+
+        // set last x position as initial
         lastX = gameObject.transform.position.x;
     }
 
-    // Update is called once per frame
+    // get input axis for move player
     void Update()
     {
 #if UNITY_EDITOR
@@ -43,12 +51,14 @@ public class Player : MonoBehaviour
             gameObject.transform.Translate(Vector2.right * delta * MoveSpeed * MobileTouchSensitivty);
         }
 #endif
-
-        TrimPosition();
+        // limit player movement between screen view for left and right of screen
+        ThresholdPosition();
     }
 
-    void TrimPosition()
+    // threshold function
+    void ThresholdPosition()
     {
+        // dedect direction of player if we required for custom ball force or any animation
         if (lastX > gameObject.transform.position.x)
         {
             PlayerDirection = Direction.Left;
@@ -56,22 +66,24 @@ public class Player : MonoBehaviour
         else if (lastX < gameObject.transform.position.x)
         {
             PlayerDirection = Direction.Right;
-            lastX = gameObject.transform.position.x;
         }
         else
         {
             PlayerDirection = Direction.Idle;
         }
 
+        // set last x position of player
         lastX = gameObject.transform.position.x;
 
+        // find radius of player width
         var radius = gameObject.transform.localScale.x / 2;
 
+        // limit for screen left side
         if (lastX - radius < -OrthoWidth)
         {
             gameObject.transform.position = new Vector2(-OrthoWidth + radius, gameObject.transform.position.y);
         }
-        else if (lastX + radius > OrthoWidth)
+        else if (lastX + radius > OrthoWidth) // limit for screen right side
         {
             gameObject.transform.position = new Vector2(OrthoWidth - radius, gameObject.transform.position.y);
         }
