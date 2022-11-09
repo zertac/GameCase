@@ -9,6 +9,7 @@ public class ScreenManager : MonoBehaviour
 
     public GameObject LobbyScreen;
     public GameObject GameScreen;
+    public GameObject ResultScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,11 @@ public class ScreenManager : MonoBehaviour
         else if (screen == Screens.GAME)
         {
             var o = Instantiate(GameScreen);
+            CurrentScreen = o.GetComponent<ScreenBase>();
+        }
+        else if (screen == Screens.RESULT)
+        {
+            var o = Instantiate(ResultScreen);
             CurrentScreen = o.GetComponent<ScreenBase>();
         }
     }

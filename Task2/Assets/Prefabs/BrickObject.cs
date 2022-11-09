@@ -33,8 +33,10 @@ public class BrickObject : MonoBehaviour
     {
         _data = data;
 
-        if(_data.Type == "E")
+        if (_data.Type == "E")
         {
+            gameObject.tag = "Empty";
+
             Destroy(GetComponent<SpriteRenderer>());
             Destroy(GetComponent<Collider2D>());
         }

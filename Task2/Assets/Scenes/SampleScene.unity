@@ -225,7 +225,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   CurrentScreen: {fileID: 0}
   LobbyScreen: {fileID: 4308873549992304211, guid: 05ff71e40d93fa84995a1935ada05823, type: 3}
   GameScreen: {fileID: 4237174008976060805, guid: 09aae2a8f790c6148a59b8da71e39e5e, type: 3}
+  ResultScreen: {fileID: 8892442665965574162, guid: 46c698353d2617341b632d0a7ac5b30a, type: 3}
 --- !u!114 &1036675413
 MonoBehaviour:
   m_ObjectHideFlags: 0

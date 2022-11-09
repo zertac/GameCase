@@ -41,6 +41,7 @@ public class GameScreen : ScreenBase
         var o = Instantiate(LevelObject, gameObject.transform);
         o.GetComponent<BrickPanel>().SetData(GameManager.Instance.LevelData);
 
+        ScoreText.text = "Score : " + GameManager.Instance.TotalScore.ToString();
         BallText.text = "Ball : " + PlayerManager.Instance.Data.Ball.ToString();
     }
 

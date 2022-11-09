@@ -10,7 +10,8 @@ public enum ActionTypes
     GAME_STARTED = 1,
     BREAK_BRICK = 2,
     DEAD = 3,
-    GAME_OVER = 4
+    GAME_OVER = 4,
+    LEVEL_COMPLETE = 5
 }
 
 public enum Screens

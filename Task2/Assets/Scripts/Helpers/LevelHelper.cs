@@ -6,8 +6,14 @@ public static class LevelHelper
 {
     public static void LoadLevel(int level)
     {
-        var levelData = DataHelper.GetGameData().Levels[level - 1];
-       
-        EventManager.Instance.Fire<LevelData>(ActionTypes.LOAD_LEVEL,levelData);
+        if (DataHelper.GetGameData().Levels.Count > level - 1)
+        {
+            var levelData = DataHelper.GetGameData().Levels[level - 1];
+            EventManager.Instance.Fire<LevelData>(ActionTypes.LOAD_LEVEL, levelData);
+        }
+        else
+        {
+            EventManager.Instance.Fire<Score>(ActionTypes.GAME_OVER, new Score { Value = GameManager.Instance.TotalScore });
+        }
     }
 }
