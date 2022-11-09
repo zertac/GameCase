@@ -74,6 +74,7 @@ public class BrickObject : MonoBehaviour
             else
             {
                 collision.gameObject.GetComponent<Ball>().SetColor(_data.Type);
+                SfxHelper.Instance.Play("collide");
             }
         }
     }
@@ -81,6 +82,7 @@ public class BrickObject : MonoBehaviour
     void Explode()
     {
         var o = Instantiate(ExplodeObj);
+        SfxHelper.Instance.Play("explode");
 
         var ps = o.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule psmain = ps.main;

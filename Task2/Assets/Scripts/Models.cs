@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -103,4 +104,11 @@ public class PlayerData
     public int LastScore { get; set; }
     public int HighestScore { get; set; }
     public int Ball { get; set; }
+}
+
+[Serializable]
+public class AudioData<MKey, MValue>
+{
+    [field: SerializeField] public MKey Key { set; get; }
+    [field: SerializeField] public MValue Value { set; get;}
 }
