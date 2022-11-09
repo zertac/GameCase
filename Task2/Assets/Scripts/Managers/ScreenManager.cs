@@ -18,6 +18,7 @@ public class ScreenManager : MonoBehaviour
 
         Application.targetFrameRate = 60;
         Application.runInBackground = true;
+        Screen.SetResolution(1080, 1920, true);
 
         OpenScreen(Screens.LOBBY);
     }

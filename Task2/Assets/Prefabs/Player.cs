@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float MoveSpeed = 1f;
+    public float MobileTouchSensitivty = 0.1f;
+
     public Direction PlayerDirection;
     public SpriteRenderer SpriteRenderer;
 
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             var delta = Input.GetTouch(0).deltaPosition;
-            gameObject.transform.Translate(Vector2.right * delta * MoveSpeed);
+            gameObject.transform.Translate(Vector2.right * delta * MoveSpeed * MobileTouchSensitivty);
         }
 #endif
 
