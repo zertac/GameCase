@@ -33,6 +33,12 @@ public class BrickObject : MonoBehaviour
     {
         _data = data;
 
+        if(_data.Type == "E")
+        {
+            Destroy(GetComponent<SpriteRenderer>());
+            Destroy(GetComponent<Collider2D>());
+        }
+
         SetScale();
 
         SpriteRenderer.color = _data.Color.ToColor();

@@ -3,7 +3,7 @@
     {
       "Col": 9,
       "Row": 7,
-
+      "Ball": 3,
       "Colors": {
         "A": "#00aeef",
         "B": "#2e3192",
@@ -26,7 +26,7 @@
         "R": 3,
         "Y": 1
       },
-      "Data": "BGOAGLGAAPFBGAGAYAOBRAOBPYOGPRYBOLRRPBBPYOALRYOOPBAGYOOROYALRLR"
+      "Data": "BGOAGLEAEEEBGAGAYAOBRAOBPYOGPREBOLREPBBPYOELRYOOPBAEYOOEOYALRLR"
     }
   ]
 }

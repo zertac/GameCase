@@ -9,7 +9,8 @@ public enum ActionTypes
     LOAD_LEVEL = 0,
     GAME_STARTED = 1,
     BREAK_BRICK = 2,
-    GAME_OVER = 3
+    DEAD = 3,
+    GAME_OVER = 4
 }
 
 public enum Screens
@@ -33,6 +34,7 @@ public class LevelData
 {
     public int Col { get; set; }
     public int Row { get; set; }
+    public int Ball { get; set; }
 
     public Dictionary<string, string> Colors { get; set; }
     public Dictionary<string, int> Values { get; set; }
@@ -93,4 +95,11 @@ public class Score
 public class BallData
 {
     public string Type { get; set; }
+}
+
+public class PlayerData
+{
+    public int LastScore { get; set; }
+    public int HighestScore { get; set; }
+    public int Ball { get; set; }
 }

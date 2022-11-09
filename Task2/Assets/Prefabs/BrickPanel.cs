@@ -4,19 +4,32 @@ using UnityEngine;
 
 public class BrickPanel : MonoBehaviour
 {
+    public static BrickPanel Instance;
+    public GameObject Ball;
+
     public GameObject BrickObj;
+    
     private LevelData _data;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-
+        CreateBall();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void CreateBall()
+    {
+        Instantiate(Ball, gameObject.transform);
     }
 
     public void SetData(LevelData data)
@@ -43,5 +56,7 @@ public class BrickPanel : MonoBehaviour
             x = -OrthoWidth;
             y -= o.GetComponent<SpriteRenderer>().bounds.size.y;
         }
+
+        PlayerManager.Instance.Data.Ball = _data.Ball;
     }
 }

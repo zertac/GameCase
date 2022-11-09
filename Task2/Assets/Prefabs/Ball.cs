@@ -10,6 +10,8 @@ public class Ball : MonoBehaviour
     public BallData Data;
     public SpriteRenderer SpriteRenderer;
     public float BallSpeed = 4f;
+    public bool IsPlaying = false;
+
     private Rigidbody2D _rb;
 
     void Awake()
@@ -23,6 +25,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         _rb.velocity = Vector2.one * BallSpeed;
+        IsPlaying = true;
     }
 
     // Update is called once per frame
@@ -33,10 +36,24 @@ public class Ball : MonoBehaviour
 
     void CheclBallPosition()
     {
+        if (!IsPlaying) return;
+
         if (gameObject.transform.position.y < -Camera.main.orthographicSize)
         {
-            Debug.Log("Game over");
-            //Destroy(gameObject);
+            IsPlaying = false;
+
+            PlayerManager.Instance.Data.Ball--;
+
+            if (PlayerManager.Instance.Data.Ball <= 0)
+            {
+                Debug.Log("Game over");
+                EventManager.Instance.Fire<Score>(ActionTypes.GAME_OVER, new Score { Value = GameManager.Instance.TotalScore });
+            }
+            else
+            {
+                Debug.Log("Dead " + PlayerManager.Instance.Data.Ball);
+                EventManager.Instance.Fire<Score>(ActionTypes.DEAD, new Score { Value = GameManager.Instance.TotalScore });
+            }
         }
     }
 
@@ -60,5 +77,5 @@ public class Ball : MonoBehaviour
         Data.Type = type;
 
         SpriteRenderer.color = colorData.ToColor();
-    }      
+    }
 }
